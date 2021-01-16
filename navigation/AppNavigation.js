@@ -8,6 +8,7 @@ import ConnectScreen from 'screens/home/connect/ConnectScreen';
 import UpdateScreen from 'screens/home/update/UpdateScreen';
 import TemperatureScreen from 'screens/home/temp/TemperatureScreen';
 import DateScreen from 'screens/home/date/DateScreen';
+import GraphScreen from 'screens/home/graph/GraphScreen';
 
 const AuthStack = createStackNavigator();
 
@@ -18,6 +19,7 @@ function HomeScreen() {
         <AuthStack.Screen name="Update" component={UpdateScreen} options={{ headerShown: false }} />
         <AuthStack.Screen name="Temperature" component={TemperatureScreen} options={{ headerShown: false }} />
         <AuthStack.Screen name="Date" component={DateScreen} options={{ headerShown: false }} />
+        <AuthStack.Screen name="Graph" component={GraphScreen} options={{ headerShown: false }} />
       </AuthStack.Navigator>
     );
 }

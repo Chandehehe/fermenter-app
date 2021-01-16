@@ -6,7 +6,8 @@ import { Button } from 'components';
 
 import Feather from 'react-native-vector-icons/Feather';
 
-// import styles from './styles';
+import styles from './styles';
+import { NavigationService } from 'services';
 import { COLORS, FONTS } from 'constants';
 
 const DateForm = () => (
@@ -57,7 +58,7 @@ const DateForm = () => (
                 fontSize: 14,
                 color: COLORS.primary
             }}
-            onPress={() => null}
+            onPress={() => NavigationService.navigate('Graph')}
         />   
     </View>
 );
