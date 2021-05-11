@@ -2,7 +2,11 @@ import { sign, verify } from 'jsonwebtoken';
 
 import { Token } from '../../types/auth';
 import { logger } from '../../logger';
-import { UserTable } from '../../persistence';
+
+// TODO: swap for real users
+const USER_EMAIL = 'head@brewer.com';
+const USER_PASSWORD = 'pAsSWoRd!';
+const USER_ID = '';
 
 // TODO: move to config
 const SECRET = 'f1BtnWgD3VKY';
@@ -23,7 +27,7 @@ export const getUserFromToken = (token: string): null | Token => {
 };
 
 export const doLogin = async (email: string, password: string): Promise<string | null> => {
-  const userFound = await UserTable.findOne({ email, password });
+  const userFound = email === USER_EMAIL && password === USER_PASSWORD;
 
   if (!userFound) {
     logger.warn({ message: 'user not found with email/password provided', email });
@@ -33,7 +37,7 @@ export const doLogin = async (email: string, password: string): Promise<string |
   return sign(
     {
       algorithm: 'HS256',
-      subject: userFound.id,
+      subject: USER_ID,
       expiresIn: TOKEN_EXPIRY,
     },
     SECRET,

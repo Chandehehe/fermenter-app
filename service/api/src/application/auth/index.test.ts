@@ -1,6 +1,6 @@
 import { doLogin, getUserFromToken } from './index';
 import { MOCK_USER } from '../../mocks';
-import { UserTable } from '../../persistence';
+//import { UserTable } from '../../persistence';
 
 const MOCK_TOKEN = 'token';
 const MOCK_TOKEN_DETAILS = { foo: 'bar' };
@@ -10,7 +10,7 @@ jest.mock('jsonwebtoken', () => ({
   verify: () => MOCK_TOKEN_DETAILS,
 }));
 
-jest.mock('../../persistence');
+//jest.mock('../../persistence');
 
 describe('auth', () => {
   afterAll(() => {
@@ -24,13 +24,13 @@ describe('auth', () => {
 
   describe('doLogin', () => {
     it('should return null when email/password are not valid', async () => {
-      jest.spyOn(UserTable, 'findOne').mockImplementationOnce(() => Promise.resolve(null));
+      //jest.spyOn(UserTable, 'findOne').mockImplementationOnce(() => Promise.resolve(null));
       const result = await doLogin('email', 'password');
       expect(result).toBe(null);
     });
 
     it('should return token when email/password are valid', async () => {
-      jest.spyOn(UserTable, 'findOne').mockImplementationOnce(() => Promise.resolve(MOCK_USER));
+      //jest.spyOn(UserTable, 'findOne').mockImplementationOnce(() => Promise.resolve(MOCK_USER));
       const result = await doLogin(MOCK_USER.email, MOCK_USER.password);
       expect(result).toBe(MOCK_TOKEN);
     });
@@ -38,7 +38,7 @@ describe('auth', () => {
 
   describe('getUserFromToken', () => {
     it('should return null when headers are not valid', () => {
-      const result = getUserFromToken(undefined);
+      const result = getUserFromToken('');
       expect(result).toBe(null);
     });
 
