@@ -1,4 +1,5 @@
 service: fermenter-api
+useDotenv: false
 
 provider:
   name: aws
@@ -8,7 +9,6 @@ provider:
     name: fermenter-api-production
 
 plugins:
-  - serverless-deployment-bucket
   - serverless-webpack
   - serverless-offline
 

@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "24c725aa-c372-47aa-82d2-6b80ed6fa0f5",
-		"name": "Cerveza",
+		"_postman_id": "34eae67f-cbd2-417f-a5b6-b6abbb52c9d6",
+		"name": "Fermenter API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -76,6 +76,36 @@
 			"response": []
 		},
 		{
+			"name": "POST fermentation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  addFermentation(name: \"fermentation 1\", targetTemperature: 12) {\n    id,\n    name\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+					"protocol": "https",
+					"host": [
+						"6bndv8w4d2",
+						"execute-api",
+						"ap-southeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"production",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "POST fermentation reading",
 			"request": {
 				"method": "POST",
@@ -83,19 +113,22 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query app {\n    Users {\n        id,\n        name,\n        created_at,\n        updated_at\n        fermentations {\n            id,\n            name,\n            active,\n            target_temperature,\n            created_at,\n            updated_at,\n            readings {\n                id,\n                created_at,\n                updated_at\n                sensor_name,\n                value\n            }\n        }\n    }\n}",
+						"query": "mutation {\n  addFermentation(name: \"fermentation 1\", targetTemperature: 12) {\n    id,\n    name\n  }\n}\n",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/dev/graphql",
-					"protocol": "http",
+					"raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"6bndv8w4d2",
+						"execute-api",
+						"ap-southeast-1",
+						"amazonaws",
+						"com"
 					],
-					"port": "3000",
 					"path": [
-						"dev",
+						"production",
 						"graphql"
 					]
 				}

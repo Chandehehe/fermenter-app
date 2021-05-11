@@ -14,5 +14,6 @@ Typescript + GraphQL + Lambda stack.
 
 ## Missing
 
-- Terraform scripts to create database
-- Connect database with server side code
+- Terraform scripts to create databases.
+- Connect database with server side code.
+- Additional documentation.
