@@ -1,139 +1,103 @@
 {
-	"info": {
-		"_postman_id": "34eae67f-cbd2-417f-a5b6-b6abbb52c9d6",
-		"name": "Fermenter API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Authenticate",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\n  login(email: \"head@brewer.com\", password:\"pAsSWoRd!\")\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "https://zpl4du738b.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
-					"protocol": "https",
-					"host": [
-						"zpl4du738b",
-						"execute-api",
-						"ap-southeast-1",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"production",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET fermentations",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwczovL2F3ZXNvbWVhcGkuY29tL2dyYXBocWwiOnt9LCJpYXQiOjE2MDk4Nzg5OTgsImV4cCI6MTYwOTk2NTM5OCwic3ViIjoiOTBkMTE0MTYtZDI2YS00NGE3LWJkZjYtMjEzNWUxOWE4N2I1In0.bhyIMAJyhnBQ4_vlkxYyrR1q0NkWNb3sa3zp6npCb38",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query app {\n    myFermentations {\n            id,\n            name,\n            active,\n            targetTemperature,\n            createdAt,\n            updatedAt,\n            readings {\n                id,\n                createdAt,\n                updatedAt\n                sensorName,\n                value\n            }\n        }\n    \n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "https://zpl4du738b.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
-					"protocol": "https",
-					"host": [
-						"zpl4du738b",
-						"execute-api",
-						"ap-southeast-1",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"production",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST fermentation",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\n  addFermentation(name: \"fermentation 1\", targetTemperature: 12) {\n    id,\n    name\n  }\n}\n",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
-					"protocol": "https",
-					"host": [
-						"6bndv8w4d2",
-						"execute-api",
-						"ap-southeast-1",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"production",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST fermentation reading",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\n  addFermentation(name: \"fermentation 1\", targetTemperature: 12) {\n    id,\n    name\n  }\n}\n",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
-					"protocol": "https",
-					"host": [
-						"6bndv8w4d2",
-						"execute-api",
-						"ap-southeast-1",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"production",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "34eae67f-cbd2-417f-a5b6-b6abbb52c9d6",
+    "name": "Fermenter API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authenticate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation {\n  login(email: \"head@brewer.com\", password:\"pAsSWoRd!\")\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+          "protocol": "https",
+          "host": ["6bndv8w4d2", "execute-api", "ap-southeast-1", "amazonaws", "com"],
+          "path": ["production", "graphql"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET fermentations",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwczovL2F3ZXNvbWVhcGkuY29tL2dyYXBocWwiOnt9LCJpYXQiOjE2MDk4Nzg5OTgsImV4cCI6MTYwOTk2NTM5OCwic3ViIjoiOTBkMTE0MTYtZDI2YS00NGE3LWJkZjYtMjEzNWUxOWE4N2I1In0.bhyIMAJyhnBQ4_vlkxYyrR1q0NkWNb3sa3zp6npCb38",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query app {\n    myFermentations {\n            id,\n            name,\n            active,\n            targetTemperature,\n            createdAt,\n            updatedAt,\n            readings {\n                id,\n                createdAt,\n                updatedAt\n                sensorName,\n                value\n            }\n        }\n    \n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+          "protocol": "https",
+          "host": ["6bndv8w4d2", "execute-api", "ap-southeast-1", "amazonaws", "com"],
+          "path": ["production", "graphql"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST fermentation",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation {\n  addFermentation(name: \"fermentation 1\", targetTemperature: 12) {\n    id,\n    name\n  }\n}\n",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+          "protocol": "https",
+          "host": ["6bndv8w4d2", "execute-api", "ap-southeast-1", "amazonaws", "com"],
+          "path": ["production", "graphql"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST fermentation reading",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation {\n  addFermentation(name: \"fermentation 1\", targetTemperature: 12) {\n    id,\n    name\n  }\n}\n",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+          "protocol": "https",
+          "host": ["6bndv8w4d2", "execute-api", "ap-southeast-1", "amazonaws", "com"],
+          "path": ["production", "graphql"]
+        }
+      },
+      "response": []
+    }
+  ]
 }
