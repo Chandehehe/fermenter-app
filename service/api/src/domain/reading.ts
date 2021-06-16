@@ -1,11 +1,8 @@
 import { Entity } from './entity';
 
-export interface Reading {
-  id: string;
+export type Reading = {
   sensorName: string;
-  value: number;
-  createdAt: string;
-  updatedAt: string;
-}
+  temperature: number;
+};
 
 export class ReadingModel extends Entity<Reading> {}

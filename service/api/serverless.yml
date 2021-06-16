@@ -1,12 +1,27 @@
 service: fermenter-api
-useDotenv: false
+useDotenv: true
+configValidationMode: error
 
 provider:
   name: aws
   runtime: nodejs14.x
-  region: ap-southeast-1
+  region: ${env:REGION}
   deploymentBucket:
     name: fermenter-api-production
+
+  environment:
+    REGION: ${env:REGION}
+    TOKEN_SECRET: ${env:TOKEN_SECRET}
+    TOKEN_EXPIRY: ${env:TOKEN_EXPIRY}
+    INFLUXDB_USERNAME: ${env:INFLUXDB_USERNAME}
+    INFLUXDB_PASSWORD: ${env:INFLUXDB_PASSWORD}
+    INFLUXDB_HOST: ${env:INFLUXDB_HOST}
+    INFLUX_DB_DATABASE_NAME: ${env:INFLUX_DB_DATABASE_NAME}
+    POSTGRESDB_USERNAME: ${env:POSTGRESDB_USERNAME}
+    POSTGRESDB_PASSWORD: ${env:POSTGRESDB_PASSWORD}
+    POSTGRESDB_HOST: ${env:POSTGRESDB_HOST}
+    POSTGRESDB_PORT: ${env:POSTGRESDB_PORT}
+    POSTGRESDB_DB_DATABASE_NAME: ${env:POSTGRESDB_DB_DATABASE_NAME}
 
 plugins:
   - serverless-webpack

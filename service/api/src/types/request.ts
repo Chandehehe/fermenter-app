@@ -4,12 +4,18 @@ export type loginRequest = {
 };
 
 export type addFermentationRequest = {
+  userId: string;
   name: string;
   targetTemperature: number;
 };
 
+export type getFermentationsRequest = {
+  userId: string;
+};
+
 export type addReadingRequest = {
+  userId: string;
   fermentationId: string;
   sensorName: string;
-  reading: number;
+  temperature: number;
 };

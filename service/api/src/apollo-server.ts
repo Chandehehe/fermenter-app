@@ -1,4 +1,4 @@
-import { ApolloServer, AuthenticationError } from 'apollo-server-lambda';
+import { ApolloServer } from 'apollo-server-lambda';
 
 import { resolvers } from './resolvers';
 import { typeDefs } from './type-defs';
@@ -8,9 +8,11 @@ const apolloServer = new ApolloServer({
   resolvers,
   typeDefs,
   context: ({ event }) => {
-    const token = event.headers.Authorization || '';
-    const user = getUserFromToken(token);
-    // if (!user) throw new AuthenticationError('you must be logged in');
+    const token = event.headers.Authorization || null;
+    let user = null;
+    if (token) {
+      user = getUserFromToken(token);
+    }
     return { user };
   },
   playground: {

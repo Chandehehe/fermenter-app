@@ -5,7 +5,7 @@ export const MOCK_FERMENTATION_READING = {
   createdAt: MOCK_DATE,
   updatedAt: MOCK_DATE,
   sensorName: 'ambient',
-  value: 20,
+  temperature: 20,
 };
 
 export const MOCK_FERMENTATION = {

@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  postgresdb:
+    image: postgres:13.3
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: admin
+      POSTGRES_DB: fermenter_db
+
+  influxdb:
+    image: influxdb:1.8
+    restart: always
+    ports:
+      - '8086:8086'
+    environment:
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: password
+      INFLUXDB_DB: fermenter_db
