@@ -4,8 +4,7 @@ import { logger } from '../../logger';
 
 export const addReading = async (params: addReadingRequest): Promise<boolean> => {
   try {
-    const { userId, fermentationId, sensorName, temperature } = params;
-    await ReadingTable.create(userId, fermentationId, temperature, sensorName);
+    await ReadingTable.create(params);
     return true;
   } catch (err) {
     logger.warn(err);

@@ -16,6 +16,6 @@ export type getFermentationsRequest = {
 export type addReadingRequest = {
   userId: string;
   fermentationId: string;
-  sensorName: string;
+  sensorId: string;
   temperature: number;
 };

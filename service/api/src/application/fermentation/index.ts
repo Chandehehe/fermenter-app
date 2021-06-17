@@ -26,7 +26,5 @@ export const getFermentations = async (params: getFermentationsRequest): Promise
     const readings = await ReadingTable.find(fermentation.get('id'));
     fermentations.push({ ...fermentation.getAttributes(), readings: readings.map((r) => r.getAttributes()) });
   }
-
-  // return [{ ...MOCK_FERMENTATION, readings }] as Fermentation[];
   return fermentations.map((f) => new FermentationModel(f).asJsonResponse());
 };
