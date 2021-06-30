@@ -26,10 +26,15 @@ export const typeDefs = gql`
     updatedAt: String!
   }
 
+  input ReadingInput {
+    sensorId: String!
+    temperature: Float!
+  }
+
   type Mutation {
     login(email: String!, password: String!): String
     addFermentation(name: String!, targetTemperature: Float!): Boolean
-    addReading(fermentationId: ID!, sensorId: String!, temperature: Float!): Boolean
+    addReading(fermentationId: ID!, readings: [ReadingInput]!): Boolean
   }
 
   type Query {

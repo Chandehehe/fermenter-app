@@ -16,6 +16,8 @@ export type getFermentationsRequest = {
 export type addReadingRequest = {
   userId: string;
   fermentationId: string;
-  sensorId: string;
-  temperature: number;
+  readings: Array<{
+    sensorId: string;
+    temperature: number;
+  }>;
 };

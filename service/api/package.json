@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/serverless offline start",
+    "start": "./node_modules/.bin/serverless offline start --stage development",
     "test": "./node_modules/.bin/jest",
     "deploy": "NODE_ENV=production serverless deploy --stage production"
   },
