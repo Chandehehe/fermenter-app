@@ -14,8 +14,4 @@ Monorepo with all the components for the fermenter project.
 
 ## Services
 
-Server URL: `https://zpl4du738b.execute-api.ap-southeast-1.amazonaws.com/production/graphql`
-
-## Deployment
-
-TODO: document steps here
+Server URL: `https://xkyfwfe9x2.execute-api.ap-southeast-1.amazonaws.com/production/graphql`
