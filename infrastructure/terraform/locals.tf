@@ -1,8 +1,9 @@
 locals {
-  name   = "serverless"
-  region = "ap-southeast-1"
+  region      = var.config.region
+  name        = var.config.name
+  environment = var.config.environment
   tags = {
     Owner       = "devops"
-    Environment = "dev"
+    Environment = var.config.environment
   }
 }

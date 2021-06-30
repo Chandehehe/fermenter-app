@@ -7,16 +7,12 @@ provider:
   runtime: nodejs14.x
   region: ${env:REGION}
   deploymentBucket:
-    name: fermenter-api-production
+    name: fermenter-api-${opt:stage}
 
   environment:
     REGION: ${env:REGION}
     TOKEN_SECRET: ${env:TOKEN_SECRET}
     TOKEN_EXPIRY: ${env:TOKEN_EXPIRY}
-    INFLUXDB_USERNAME: ${env:INFLUXDB_USERNAME}
-    INFLUXDB_PASSWORD: ${env:INFLUXDB_PASSWORD}
-    INFLUXDB_HOST: ${env:INFLUXDB_HOST}
-    INFLUX_DB_DATABASE_NAME: ${env:INFLUX_DB_DATABASE_NAME}
     POSTGRESDB_USERNAME: ${env:POSTGRESDB_USERNAME}
     POSTGRESDB_PASSWORD: ${env:POSTGRESDB_PASSWORD}
     POSTGRESDB_HOST: ${env:POSTGRESDB_HOST}
@@ -26,11 +22,20 @@ provider:
 plugins:
   - serverless-webpack
   - serverless-offline
+  - serverless-vpc-discovery
 
 custom:
   webpack:
     includeModules: true
     packager: 'yarn'
+  vpcDiscovery:
+    vpcName: fermenter-${opt:stage}-vpc
+    subnets:
+      - tagKey: Name
+        tagValues:
+          - fermenter-${opt:stage}-vpc-private-ap-southeast-1a
+          - fermenter-${opt:stage}-vpc-private-ap-southeast-1b
+          - fermenter-${opt:stage}-vpc-private-ap-southeast-1c
 
 functions:
   graphql:

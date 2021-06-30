@@ -6,8 +6,8 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 3.0"
 
-  name = local.name
-  cidr = "10.99.0.0/18"
+  name = "${local.name}-${local.environment}-vpc"
+  cidr = var.config.cidr_block
 
   azs              = ["${local.region}a", "${local.region}b", "${local.region}c"]
   public_subnets   = ["10.99.0.0/24", "10.99.1.0/24", "10.99.2.0/24"]
@@ -21,11 +21,11 @@ module "vpc" {
 # # RDS Aurora Module - PostgreSQL
 # ################################################################################
 
-module "rds-aurora_serverless" {
+module "aurora_postgresql" {
   source  = "terraform-aws-modules/rds-aurora/aws"
-  version = "~> 3.0"
+  version = "5.2.0"
 
-  name              = "${local.name}-postgresql"
+  name              = "${local.name}-${local.environment}-postgresql"
   engine            = "aurora-postgresql"
   engine_mode       = "serverless"
   storage_encrypted = true
@@ -40,30 +40,35 @@ module "rds-aurora_serverless" {
 
   monitoring_interval = 60
 
+  enable_http_endpoint = true
+
   apply_immediately   = true
   skip_final_snapshot = true
 
   db_parameter_group_name         = aws_db_parameter_group.example_postgresql.id
   db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.example_postgresql.id
 
+  database_name = var.config.database_name
+  username      = var.config.database_master_username
+
   scaling_configuration = {
     auto_pause               = true
     min_capacity             = 2
-    max_capacity             = 16
+    max_capacity             = 4
     seconds_until_auto_pause = 300
     timeout_action           = "ForceApplyCapacityChange"
   }
 }
 
 resource "aws_db_parameter_group" "example_postgresql" {
-  name        = "${local.name}-aurora-db-postgres-parameter-group"
+  name        = "${local.name}-${local.environment}-aurora-db-postgres-parameter-group"
   family      = "aurora-postgresql10"
   description = "${local.name}-aurora-db-postgres-parameter-group"
   tags        = local.tags
 }
 
 resource "aws_rds_cluster_parameter_group" "example_postgresql" {
-  name        = "${local.name}-aurora-postgres-cluster-parameter-group"
+  name        = "${local.name}-${local.environment}-aurora-postgres-cluster-parameter-group"
   family      = "aurora-postgresql10"
   description = "${local.name}-aurora-postgres-cluster-parameter-group"
   tags        = local.tags

@@ -16,7 +16,8 @@
     "influx": "^5.9.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.6.0",
-    "serverless-dynamodb-local": "^0.2.39"
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-vpc-discovery": "^3.0.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
