@@ -15,4 +15,4 @@ CREATE TABLE "public"."fermentations" (
 
 INSERT INTO "public"."fermentations" ("id", "userId", "name", "createdAt", "updatedAt", "active", "targetTemperature") VALUES
 (1,1,'Pale Ale','2021-06-16 18:00:01.346827','2021-06-16 18:00:01.346827"',TRUE,9.99),
-(5,1,'IPA','2021-06-16 18:57:39.926961','2021-06-16 18:57:39.926961',TRUE,8);
+(2,1,'IPA','2021-06-16 18:57:39.926961','2021-06-16 18:57:39.926961',TRUE,8);
