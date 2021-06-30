@@ -18,10 +18,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+					"raw": "https://xkyfwfe9x2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
 					"protocol": "https",
 					"host": [
-						"6bndv8w4d2",
+						"xkyfwfe9x2",
 						"execute-api",
 						"ap-southeast-1",
 						"amazonaws",
@@ -43,7 +43,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwczovL2F3ZXNvbWVhcGkuY29tL2dyYXBocWwiOnt9LCJpYXQiOjE2MDk4Nzg5OTgsImV4cCI6MTYwOTk2NTM5OCwic3ViIjoiOTBkMTE0MTYtZDI2YS00NGE3LWJkZjYtMjEzNWUxOWE4N2I1In0.bhyIMAJyhnBQ4_vlkxYyrR1q0NkWNb3sa3zp6npCb38",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YmplY3QiOjEsImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjI1MDc3MjMxLCJleHAiOjE2MjUxNjM2MzF9.hsYXpEbSP82xh_ouWWFOaaJhdn504TC1usRdPuWAN0k",
 							"type": "string"
 						}
 					]
@@ -53,15 +53,15 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query app {\n    myFermentations {\n            id,\n            name,\n            active,\n            targetTemperature,\n            createdAt,\n            updatedAt,\n            readings {\n                id,\n                createdAt,\n                updatedAt\n                sensorName,\n                value\n            }\n        }\n    \n}",
+						"query": "query app {\n    myFermentations {\n            id,\n            name,\n            active,\n            targetTemperature,\n            createdAt,\n            updatedAt,\n            readings {\n                sensorId,\n                temperature,\n                createdAt,\n                updatedAt\n            }\n        }\n    \n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+					"raw": "https://xkyfwfe9x2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
 					"protocol": "https",
 					"host": [
-						"6bndv8w4d2",
+						"xkyfwfe9x2",
 						"execute-api",
 						"ap-southeast-1",
 						"amazonaws",
@@ -78,20 +78,30 @@
 		{
 			"name": "POST fermentation",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YmplY3QiOjEsImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjI1MDc1NTQxLCJleHAiOjE2MjUxNjE5NDF9.Irsaql2U_IZYWpwssjHTCihzEXHMZT4AgUMIGD25Xq4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addFermentation(name: \"fermentation 1\", targetTemperature: 12) {\n    id,\n    name\n  }\n}\n",
+						"query": "mutation {\n  addFermentation(name: \"APA\", targetTemperature: 8)\n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+					"raw": "https://xkyfwfe9x2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
 					"protocol": "https",
 					"host": [
-						"6bndv8w4d2",
+						"xkyfwfe9x2",
 						"execute-api",
 						"ap-southeast-1",
 						"amazonaws",
@@ -108,20 +118,30 @@
 		{
 			"name": "POST fermentation reading",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YmplY3QiOjEsImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjI1MDc1NTQxLCJleHAiOjE2MjUxNjE5NDF9.Irsaql2U_IZYWpwssjHTCihzEXHMZT4AgUMIGD25Xq4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addReading(\n    fermentationId: \"1\",\n    sensorName: \"ambient\",\n    reading: 12){\n      id, sensorName, value\n  }\n}",
+						"query": "mutation {\n  addReading(\n    fermentationId: \"1\"\n    readings: [{ sensorId: \"01\", temperature: 1}, { sensorId: \"02\", temperature: 2 }]\n  )\n}\n",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "https://6bndv8w4d2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+					"raw": "https://xkyfwfe9x2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
 					"protocol": "https",
 					"host": [
-						"6bndv8w4d2",
+						"xkyfwfe9x2",
 						"execute-api",
 						"ap-southeast-1",
 						"amazonaws",
