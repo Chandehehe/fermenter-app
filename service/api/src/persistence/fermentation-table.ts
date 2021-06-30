@@ -7,7 +7,7 @@ export const FermentationTable = {
   create: async (userId: Fermentation['userId'], params: Partial<Fermentation>): Promise<void> => {
     const { name, active, targetTemperature } = params;
     await postgresClient.query<Fermentation>(
-      `INSERT INTO ${tableName} ("userId", name, active, "targetTemperature", "createdAt", "updatedAt") VALUES ($1, $2, $3, $4, snow(), now())`,
+      `INSERT INTO ${tableName} ("userId", name, active, "targetTemperature", "createdAt", "updatedAt") VALUES ($1, $2, $3, $4, now(), now())`,
       [userId, name, active, targetTemperature],
     );
   },
