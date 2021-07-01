@@ -5,7 +5,9 @@ Monorepo with all the components for the fermenter project.
 ## Structure
 
 ```
+└── docker
 └── infrastructure
+   ├── migrations (temporary location for DB migrations)
    └── terraform (IaC)
 └── service
    ├── mobile (mobile app code)
