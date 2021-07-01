@@ -15,6 +15,10 @@ export class Entity<TDbResult, T = DatabaseResult<TDbResult>> {
     this.attributes = { ...attributes };
   }
 
+  set = <K extends keyof T>(attribute: K, value: T[K]): void => {
+    this.attributes[attribute] = value;
+  };
+
   get = <K extends keyof T>(attribute: K): T[K] => this.attributes[attribute];
 
   getAttributes(): T;

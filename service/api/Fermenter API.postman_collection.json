@@ -7,6 +7,18 @@
 	"item": [
 		{
 			"name": "Authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.globals.set(\"token\", jsonData.data.login);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -36,14 +48,14 @@
 			"response": []
 		},
 		{
-			"name": "GET fermentations",
+			"name": "Get list of fermentations",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YmplY3QiOjEsImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjI1MDc3MjMxLCJleHAiOjE2MjUxNjM2MzF9.hsYXpEbSP82xh_ouWWFOaaJhdn504TC1usRdPuWAN0k",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -76,14 +88,14 @@
 			"response": []
 		},
 		{
-			"name": "POST fermentation",
+			"name": "Create new fermentation",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YmplY3QiOjEsImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjI1MDc1NTQxLCJleHAiOjE2MjUxNjE5NDF9.Irsaql2U_IZYWpwssjHTCihzEXHMZT4AgUMIGD25Xq4",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -93,7 +105,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addFermentation(name: \"APA\", targetTemperature: 8)\n}",
+						"query": "mutation {\n  addFermentation(name: \"IPA\", targetTemperature: 22)\n}",
 						"variables": ""
 					}
 				},
@@ -116,14 +128,14 @@
 			"response": []
 		},
 		{
-			"name": "POST fermentation reading",
+			"name": "Update existing fermentation",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGdvcml0aG0iOiJIUzI1NiIsInN1YmplY3QiOjEsImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjI1MDc1NTQxLCJleHAiOjE2MjUxNjE5NDF9.Irsaql2U_IZYWpwssjHTCihzEXHMZT4AgUMIGD25Xq4",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -133,7 +145,47 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addReading(\n    fermentationId: \"1\"\n    readings: [{ sensorId: \"01\", temperature: 1}, { sensorId: \"02\", temperature: 2 }]\n  )\n}\n",
+						"query": "mutation {\n  updateFermentation(fermentationId: \"35\", name: \"IPA Jan\", targetTemperature: 25)\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://xkyfwfe9x2.execute-api.ap-southeast-1.amazonaws.com/production/graphql",
+					"protocol": "https",
+					"host": [
+						"xkyfwfe9x2",
+						"execute-api",
+						"ap-southeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"production",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add fermentation temperature reading(s)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  addReading(\n    fermentationId: \"2\"\n    readings: [{ sensorId: \"01\", temperature: 1}, { sensorId: \"02\", temperature: 2 }]\n  )\n}\n",
 						"variables": ""
 					}
 				},

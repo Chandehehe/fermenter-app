@@ -27,4 +27,13 @@ export const FermentationTable = {
     const result = await postgresClient.query<Fermentation>(`SELECT * FROM ${tableName} WHERE "userId" = $1`, [userId]);
     return result.rows.map((r) => new FermentationModel(r));
   },
+
+  update: async (params: Partial<Fermentation>): Promise<FermentationModel[]> => {
+    const { id, name, targetTemperature } = params;
+    const result = await postgresClient.query<Fermentation>(
+      `UPDATE ${tableName} SET "name" = $1, "targetTemperature" = $2 WHERE id = $3`,
+      [name, targetTemperature, id],
+    );
+    return result.rows.map((r) => new FermentationModel(r));
+  },
 };

@@ -13,6 +13,13 @@ export type getFermentationsRequest = {
   userId: string;
 };
 
+export type updateFermentationRequest = {
+  userId: string;
+  fermentationId: string;
+  name?: string;
+  targetTemperature?: number;
+};
+
 export type addReadingRequest = {
   userId: string;
   fermentationId: string;
